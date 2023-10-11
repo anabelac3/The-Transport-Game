@@ -1,0 +1,33 @@
+{{ load otree static }}
+
+{{ block title }}
+    U vertegenwoordigt het {{ if player.position == 'A' }} grootste {{ endif }} {{ if player.position == 'B' }} middelgrote {{ endif }} {{ if player.position == 'C' }} kleine {{ endif }} bedrijf (Bedrijf {{ player.position }})
+{{ endblock }}
+
+{{ block content }}
+
+    <p>
+         De willekeurige trekking is voorbij.
+    </p>
+    <p>
+    - Bedrijf A vervoert {{resources_player_A}} ton.
+    </p>
+    <p>
+    - Bedrijf B vervoert {{resources_player_B}} ton.
+    </p>
+    <p>
+     - Bedrijf C vervoert {{resources_player_C}} ton.
+    </p>
+    <p>
+        Er is <strong>minimaal {{ decision_point }} ton</strong> nodig om de grote vrachtwagen te gebruiken en daarmee (een deel van) de bonus van {{ total_payoff }} euro te krijgen.
+    </p>
+    <p>
+     U bent de onderhandelaar voor Bedrijf {{ player.position }}. U vervoert iedere dag {{ player.resources }} ton.
+     Lees op het volgende scherm wat dit betekent voor de onderhandelingen.
+    </p>
+    <p>
+     Klik nu op “Volgende”
+    </p>
+    <button class="o-tree-btn-next btn btn-primary">Volgende</button>
+
+{{ endblock }}

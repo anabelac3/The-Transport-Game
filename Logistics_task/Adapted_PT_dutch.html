@@ -1,0 +1,47 @@
+{{ load otree static }}
+
+{{ block title }}
+Laatste vragen
+{{ endblock }}
+
+{{ block content }}
+
+    <p>Denk terug aan uw gedachten tijdens de onderhandelingen en beantwoord de volgende vragen</p>
+
+    <p>
+        Tijdens het onderhandelen...
+    </p>
+    <table class="table">
+    <tr>
+        <th><center><br>Vraag</center></th>
+        <th><center>Beschrijft mij niet goed <br> 1</center></th>
+        <th><center><br>2</center></th>
+        <th><center><br>3</center></th>
+        <th><center><br>4</center></th>
+        <th><center>Beschrijft mij erg goed <br> 5</center></th>
+    </tr>
+
+    {{ for field in form }}
+        <tr>
+            <td>{{ field.label }}</td>
+            {{ for choice in field }}
+                <td><center>{{ choice }}</center></td>
+            {{ endfor }}
+        </tr>
+    {{ endfor }}
+
+    </table>
+
+    <button class="o-tree-btn-next btn btn-primary">Volgende</button>
+
+{{ endblock }}
+
+{{ block scripts }}
+
+<style>
+    .table {
+        table-layout: fixed;
+    }
+</style>
+
+{{ endblock }}

@@ -1,0 +1,77 @@
+{{ block title }}
+    De onderhandelsituatie
+{{ endblock }}
+
+{{ block content }}
+
+
+        <p>
+        Nog even samengevat. De bedrijven vervoeren iedere dag 9 ton vracht van Amsterdam naar Parijs.
+        </p>
+        <p>
+            Bedrijf A is een groot bedrijf dat dagelijks 4 ton naar Parijs vervoert. Bedrijf B is een middelgroot bedrijf dat dagelijks 3 ton naar Parijs vervoert. Bedrijf C is een klein bedrijf dat dagelijks 2 ton naar Parijs vervoert. Er is een kans om een bonus te verdienen van 9000 euro. Deze bonus wordt uitbetaald als de grote vrachtwagen gebruikt wordt. Dit betekent dat iedere coalitie van bedrijven die minimaal 5 ton vracht aanbiedt aanspraak kan maken op de bonus van 9000 euro.
+        </p>
+
+        <p>
+            Dit zijn de mogelijkheden:
+			
+            <ul>
+                {{ if 'AB' in possible_coalitions_all }}
+                <li><strong class="text-success">Bedrijf A kan met Bedrijf B een AB-coalitie sluiten</strong>.
+                    Er wordt dan (4 + 3 =) <strong class="text-success">{{subsession.resources_AB}} ton </strong> vracht met de grote vrachtwagen vervoerd.
+                    De bedrijven A en B moeten dan onderling bepalen hoe ze de {{total_payoff}} euro verdelen.
+					Bedrijf C blijft gebruik maken van de eigen truck en krijgt geen deel van de bonus.
+                {{ endif }}
+        </p>
+        <p>
+                {{ if 'AC' in possible_coalitions_all }}
+                <strong class="text-success">Bedrijf A kan met Bedrijf C een AC-coalitie sluiten</strong>.
+                    Er wordt dan (4 + 2 =) <strong class="text-success">{{subsession.resources_AC}} ton </strong> vracht met de grote vrachtwagen vervoerd.
+                    De bedrijven A en C moeten dan onderling bepalen hoe ze de {{total_payoff}} euro verdelen.
+					Bedrijf B blijft gebruik maken van de eigen truck en krijgt geen deel van de bonus.
+                {{ endif }}
+        </p>
+        <p>
+                {{ if 'BC' in possible_coalitions_all }}
+                <strong class="text-success">Bedrijf B kan met Bedrijf C een BC-coalitie sluiten</strong>.
+                    Er wordt dan (3 + 2 =) <strong class="text-success">{{subsession.resources_BC}} ton </strong> vracht met de grote vrachtwagen vervoerd.
+                    De bedrijven B en C moeten dan onderling bepalen hoe ze de {{total_payoff}} euro verdelen.
+					Bedrijf A blijft gebruik maken van de eigen truck en krijgt geen deel van de bonus.
+                {{ endif }}
+        </p>
+        <p>
+                {{ if 'ABC' in possible_coalitions_all }}
+                <strong class="text-success">Bedrijf A, Bedrijf B en Bedrijf C kunnen ook een ABC-coalitie sluiten</strong>.
+                    Er wordt dan (4 + 3 + 2 =) <strong class="text-success">{{subsession.resources_ABC}} ton </strong> vracht met de grote vrachtwagen vervoerd.
+                    De bedrijven A, B en C moeten dan onderling bepalen hoe ze de {{total_payoff}} euro verdelen.
+                {{ endif }}
+            </ul>
+        </p>
+
+
+		<p>
+            De onderhandeling is dus:
+        </p>
+		<p>
+            1) welke partner(s) zoekt ieder bedrijf uit om mee samen te werken?
+        </p>
+		<p>
+            2) hoe verdelen de leden van een coalitie de 9000 euro?
+        </p>
+
+		<p>
+            Omdat de <strong>bedrijven concurrenten</strong> van elkaar zijn, moet u er wel voor zorgen dat u een zo goed mogelijke deal voor uw eigen bedrijf weet te sluiten.
+            Welk bedrijf u vertegenwoordigt wordt bepaald door middel van <strong>een willekeurige trekking. Dit doen we op het moment dat u en de andere deelnemers aan elkaar zijn gekoppeld.</strong>
+        </p>
+
+		<p>
+            Klik nu op “Volgende”
+        </p>
+
+<div class="row">
+    <div class="col-md-1 col-md-offset-11">
+    <button class="o-tree-btn-next btn btn-primary">Volgende</button>
+    </div>
+</div>
+
+{{ endblock }}

@@ -1,0 +1,41 @@
+{{ block title }}
+    Questions 3/6
+{{ endblock }}
+
+{{ block content }}
+
+    <p>Please indicate to what extend you agree with the following statement. There are no right or wrong answers.</p>
+
+    <strong>Parties with more seats deserve to be in the coalition more than parties with fewer seats.</strong>
+
+    <table class="table" width="700px">
+    <tr>
+
+        <th width="100 px"><center>Strongly <br> disagree <br> 1</center></th>
+        <th width="100 px"><center><br>2</center></th>
+        <th width="100 px"><center><br>3</center></th>
+        <th width="100 px"><center><br>4</center></th>
+        <th width="100 px"><center><br>5</center></th>
+        <th width="100 px"><center><br>6</center></th>
+        <th width="100 px"><center>Strongly <br> agree <br> 7</center></th>
+    </tr>
+
+    {{ for field in form }}
+        <tr>
+            {{ for choice in field }}
+                <td width="100 px"><center>{{ choice }}</center></td>
+            {{ endfor }}
+        </tr>
+    {{ endfor }}
+
+    </table>
+
+
+
+<div class="row">
+    <div class="col-md-1 col-md-offset-11">
+    {{ next_button }}
+    </div>
+</div>
+
+{{ endblock }}

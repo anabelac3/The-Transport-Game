@@ -1,0 +1,41 @@
+{{ load otree static }}
+
+{{ block title }}
+Laatste vragen
+{{ endblock }}
+
+{{ block content }}
+    <p>
+        In hoeverre vindt u het leuk om een computer te gebruiken?
+    </p>
+
+    <table class="table" width="700px">
+    <tr>
+
+        <th width="100 px"><center>Helemaal niet <br> 1</center></th>
+        <th width="100 px"><center><br>2</center></th>
+        <th width="100 px"><center><br>3</center></th>
+        <th width="100 px"><center><br>4</center></th>
+        <th width="100 px"><center>Helemaal wel <br> 5</center></th>
+    </tr>
+
+    {{ for field in form }}
+        <tr>
+            {{ for choice in field }}
+                <td width="100 px"><center>{{ choice }}</center></td>
+            {{ endfor }}
+        </tr>
+    {{ endfor }}
+
+    </table>
+
+
+
+
+    <div class="row">
+    <div class="col-md-1 col-md-offset-11">
+    <button class="o-tree-btn-next btn btn-primary">Volgende</button>
+    </div>
+
+
+{{ endblock }}

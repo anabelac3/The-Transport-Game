@@ -1,0 +1,27 @@
+{{ load otree static }}
+
+{{ block title }}
+    U en de andere deelnemers gaan nu onderhandelen
+{{ endblock }}
+
+{{ block content }}
+
+    <p>
+        Het onderhandelen verloopt in drie fasen:
+    </p>
+
+    <p>
+        <li>
+    <strong>Fase 1.</strong> Maak een coalitievoorstel: Iedereen maakt een voorstel waarin (a) hij/zij aangeeft welke coalitie hij/zij wil vormen en (b) waarin hij/zij aangeeft hoe hij/zij de {{ total_payoff }} euro wil verdelen onder de coalitieleden.
+        </li>
+        <li>
+    <strong>Fase 2.</strong> Kies een coalitievoorstel: Iedereen selecteert het coalitievoorstel dat hij/zij wil uitvoeren.
+        </li>
+        <li>
+    <strong>Fase 3.</strong> Kijk of er een coalitie is gevormd: Iedereen ziet welke coalitievoorstellen zijn gekozen. Een coalitie is definitief gevormd wanneer alle betrokken bedrijven in de coalitie het voorstel accepteren. Steeds wanneer dit niet is gebeurd, begint een nieuwe onderhandelingsronde.
+        </li>
+    </p>
+
+    <button class="o-tree-btn-next btn btn-primary">Volgende</button>
+
+{{ endblock }}

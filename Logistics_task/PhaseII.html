@@ -1,0 +1,81 @@
+{{ block title }}
+    Fase 2: Selecteer een voorstel
+{{ endblock }}
+
+{{ block content }}
+    <div class="row">
+
+        <table class="table table-hover">
+            <thead>
+            <th>Voorstel door</th>
+            <th>Coalitie type</th>
+                <th>Geld voor Bedrijf A (vervoert {{ resources_player_A }} ton)
+                {{ if player.position == 'A' }}
+                    <strong class="text-info">Dit bent U</strong>
+                {{ endif }}</th>
+            <th>Geld voor Bedrijf B (vervoert {{ resources_player_B }} ton)
+                {{ if player.position == 'B' }}
+                    <strong class="text-info">Dit bent U</strong>
+                {{ endif }}
+            </th>
+            <th>Geld voor Bedrijf C (vervoert {{ resources_player_C }} ton)
+                {{ if player.position == 'C' }}
+                    <strong class="text-info">Dit bent U</strong>
+                {{ endif }}
+            </th>
+            </thead>
+            <tbody>
+            {{ for p in group.get_players }}
+                <tr>
+                    <td>
+                        Bedrijf {{ p.position }}
+                        {{ if p == player }}
+                            <strong class="text-info">(Dit bent U)</strong>
+                        {{ endif }}
+                    </td>
+                    <td>{{ p.proposed_coalition }}</td>
+                    <td>{{ if p.allocate_to_player_A >= 0 }} {{ p.allocate_to_player_A }} euro{{ endif }}</td>
+                    <td>{{ if p.allocate_to_player_B >= 0 }} {{ p.allocate_to_player_B }} euro{{ endif }}</td>
+                    <td>{{ if p.allocate_to_player_C >= 0 }} {{ p.allocate_to_player_C }} euro{{ endif }}</td>
+                </tr>
+            {{ endfor }}
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <p
+                    class="text-info">Kies het coalitievoorstel dat u wilt uitvoeren:
+            </p>
+
+            <ul>
+            {{ for coalition, offer_summary, a, b, c, pid in offers }}
+            <li>
+                <input required type="radio" name="selected_coalition" value="{{pid}}">
+                {{coalition}}{{ if pid != 'None' }}-Coalitie: {{ endif }}
+                {{ if coalition == 'AB' and a >= 0 or coalition == 'AC' and a >= 0 or coalition == 'ABC' and a >= 0 }}Bedrijf A
+                    {{ if player.position == "A" }}
+                        <strong class="text-info">(U)</strong>
+                        {{ endif }}krijgt {{ a }} euro. {{ endif }}
+                {{ if coalition == 'AB' and b >= 0 or coalition == 'BC' and b >= 0 or coalition == 'ABC' and b >= 0 }}Bedrijf B
+                    {{ if player.position == "B" }}
+                        <strong class="text-info">(U)</strong>
+                        {{ endif }}krijgt {{ b }} euro. {{ endif }}
+                {{ if coalition == 'AC' and c >= 0 or coalition == 'BC' and c >= 0 or coalition == 'ABC' and c >= 0 }}Bedrijf C
+                    {{ if player.position == "C" }}
+                        <strong class="text-info">(U)</strong>
+                        {{ endif }}krijgt {{ c }} euro. {{ endif }}
+            </li>
+            {{ endfor }}
+        </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-1 col-md-offset-11">
+            <button class="o-tree-btn-next btn btn-primary">Volgende</button>
+        </div>
+    </div>
+{{ endblock }}

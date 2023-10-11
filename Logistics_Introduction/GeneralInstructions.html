@@ -1,0 +1,50 @@
+{{ block title }}
+    De onderhandelsituatie
+{{ endblock }}
+
+{{ block content }}
+
+        <p>
+            U en twee andere personen die meedoen aan dit onderzoek werken ieder voor een ander transportbedrijf. We zullen straks aangeven voor welk bedrijf u werkt. Op dit moment willen we eerst aangeven wat de situatie is. Lees deze instructies goed door.
+			{{ if comprehension_check == True }}
+                Aan het einde van de instructie stellen we er een paar vragen over.
+            {{ endif }}
+        </p>
+
+        <p>
+            De drie bedrijven vervoeren iedere dag in totaal 9 ton vracht van Amsterdam naar Parijs.
+            Bedrijf A is marktleider en vervoert iedere dag 4 ton. Bedrijf B is een middelgroot bedrijf en vervoert iedere dag 3 ton. Bedrijf C is een relatief klein bedrijf en vervoert iedere dag 2 ton. Ieder bedrijf gebruikt een vrachtwagen die precies groot genoeg is om de eigen vracht te vervoeren. Bedrijf A gebruikt dus een vrachtwagen met een capaciteit van 4 ton, Bedrijf B een vrachtwagen met een capaciteit van 3 ton, en Bedrijf C een vrachtwagen met een capaciteit van 2 ton.
+        </p>
+
+        <p>
+            Ieder bedrijf weet ook dat er een type vrachtwagen bestaat dat veel groter is en maximaal 9 ton vracht kan vervoeren. Dit type vrachtwagen mag echter alleen de weg op als er minimaal 5 ton in zit. Dit betekent dat geen van de bedrijven individueel voldoende vracht heeft om dit type vrachtwagen te gebruiken. Ze kunnen natuurlijk wel een coalitie sluiten en dan deze grote vrachtwagen inzetten.
+        </p>
+
+        <p>
+            Pasgeleden zijn alle drie de bedrijven benaderd met een zeer aantrekkelijk voorstel. Er is een bedrijf in Parijs dat staat te springen om de grote vrachtwagen. Dit bedrijf biedt een premie aan van 9000 euro als de grote vrachtwagen naar Parijs komt. De vraag is dus (1) welk bedrijf gaat met welk bedrijf samenwerken, en (2) hoe verdelen de bedrijven onderling de premie van 9000 euro?
+        </p>
+
+
+        <p>
+             Er is wel een aantal voorwaarden:
+        </p>
+        <p>
+            <strong>1)</strong> Een bedrijf moet zijn hele vracht in één vrachtwagen stoppen. Een bedrijf kan dus niet een deel van zijn vracht in de kleine vrachtwagen stoppen en een ander deel in de grote vrachtwagen.
+        </p>
+        <p>
+            <strong>2)</strong> De bonus van 9000 euro wordt alleen uitbetaald aan de bedrijven die gebruik maken van de grote vrachtwagen.
+        </p>
+        <p>
+            Dus, iedere combinatie van bedrijven die minimaal 5 ton vracht vervoert kan gebruik maken van de grote vrachtwagen en daarmee aanspraak maken op de premie van 9000 euro.
+        </p>
+
+        <p>
+            Klik nu op “Volgende”
+        </p>
+<div class="row">
+    <div class="col-md-1 col-md-offset-11">
+    <button class="o-tree-btn-next btn btn-primary">Volgende</button>
+    </div>
+</div>
+
+{{ endblock }}

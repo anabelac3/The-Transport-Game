@@ -1,0 +1,51 @@
+
+# Dingen die veranderd zijn/moeten worden
+=========================================
+First, Chris did some stuff to move to version 5 from version 3
+like Remove Self
+
+---------
+Function:
+---------
+def get_players_for_group -vervangen door- def group_by_arrival_time_method
+
+-----------------------
+in Testslider.html file
+-----------------------
+remove {{  sliders_html }}
+
+--------------
+Herdefinieren:
+--------------
+participant = player.participant
+session = player.session
+session = subsession.session
+subsession = player.subsession
+group = player.group
+
+---------
+Settings:
+---------
+add 'score' to PARTICIPANT_FIELDS
+Optional: 'slider_time': 1
+Optional: DEBUG = False
+
+-------------
+Staticmethod:
+-------------
+alle "@staticmethod"s zijn gecomment
+
+-------------------
+in PhaseI.html file
+-------------------
+remove all {{ if not forloop.last }}and{{ else }}{{ endif }}
+
+----------
+None error
+----------
+use try and except statement to override "None" cases in "before_next_page"
+
+
+
+
+

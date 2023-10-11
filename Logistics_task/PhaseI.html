@@ -1,0 +1,383 @@
+{{ block title }}
+    Fase 1 van Ronde {{ player.round_number }}: Maak een coalitievoorstel
+{{ endblock }}
+
+{{ block styles }}
+    <style>
+        ul#allocate_to_players div.form-group {
+            margin-left: 50px;
+        }
+
+        ul#allocate_to_players div.form-group,
+        ul#allocate_to_players div.controls,
+        ul#allocate_to_players div.input-group {
+            display: inline-block;
+
+        }
+    </style>
+
+{{ endblock }}
+
+
+{{ block content }}
+
+
+    <div id="bargain">
+
+        <p>
+            U onderhandelt namens <strong class="text-info"> Bedrijf {{ player.position }}</strong>.
+            Dat betekent dat u <strong class="text-info">{{ player.resources }} ton </strong> vracht vervoert naar Parijs.
+        </p>
+
+        <p>Uw concurrenten vertegenwoordigen
+            {{ for p in player.get_others_in_group }}
+                <strong class="text-success"><br>- Bedrijf  {{ p.position }}</strong>
+                (vervoert <strong class="text-success">{{ p.resources }} ton</strong>)
+            {{ endfor }}
+        </p>
+        <p>
+            Er moet minimaal {{ decision_point }} ton worden aangeboden om de grote vrachtwagen te laten rijden en dus een bonus van {{ total_payoff }} euro te verkrijgen.
+        </p>
+
+         <p>
+            Geef nu aan (a) met wie u een coalitie wilt vormen en ook (b) hoe u de {{ total_payoff }} euro over de leden van de coalitie wilt verdelen.
+        </p>
+
+        <p>
+            Ik wil de volgende coalitie vormen:
+        </p>
+
+
+        {{ if player.position == 'A' }}
+            <ul>
+                {{ for coalition in possible_coalitions_A }}
+                    <li>
+                        <input data-desc="{{ coalition }}" type="radio" name="proposed_coalition"
+                               value="{{ coalition }}"
+                               required> {{ coalition }}-coalitie
+                        {{ if coalition == 'AB' }}
+                        (met Bedrijf B die {{ resources_player_B }} ton vracht vervoert)
+                        {{ elif coalition == 'AC' }}
+                        (met Bedrijf C die {{ resources_player_C }} ton vracht vervoert)
+                        {{ elif coalition == 'ABC' }}
+                        (met Bedrijf B die {{ resources_player_B }} ton vracht vervoert en Bedrijf C die {{ resources_player_C }} ton vracht vervoert)
+                        {{ endif }}
+                    </li>
+                {{ endfor }}
+            </ul>
+
+        {{ elif player.position == 'B' }}
+            <ul>
+                {{ for coalition in possible_coalitions_B }}
+                    <li>
+                        <input data-desc="{{ coalition }}" type="radio" name="proposed_coalition"
+                               value="{{ coalition }}"
+                               required> {{ coalition }}-coalitie
+                        {{ if coalition == 'AB' }}
+                        (met Bedrijf A die {{ resources_player_A }} ton vracht vervoert)
+                        {{ elif coalition == 'BC' }}
+                        (met Bedrijf C die {{ resources_player_C }} ton vracht vervoert)
+                        {{ elif coalition == 'ABC' }}
+                        (met Bedrijf A die {{ resources_player_A }} ton vracht vervoert en Bedrijf C die {{ resources_player_C }} ton vracht vervoert)
+                        {{ endif }}
+                    </li>
+                {{ endfor }}
+            </ul>
+
+        {{ elif player.position == 'C' }}
+            <ul>
+                {{ for coalition in possible_coalitions_C }}
+                    <li>
+                        <input data-desc="{{ coalition }}" type="radio" name="proposed_coalition"
+                               value="{{ coalition }}"
+                               required> {{ coalition }}-coalitie
+                        {{ if coalition == 'AC' }}
+                        (met Bedrijf A die {{ resources_player_A }} ton vracht vervoert)
+                        {{ elif coalition == 'BC' }}
+                        (met Bedrijf B die {{ resources_player_B }} ton vracht vervoert)
+                        {{ elif coalition == 'ABC' }}
+                        (met Bedrijf A die {{ resources_player_A }} ton vracht vervoert en Bedrijf B die {{ resources_player_B }} ton vracht vervoert)
+                        {{ endif }}
+                    </li>
+                {{ endfor }}
+            </ul>
+        {{ endif }}
+
+
+      <p id="total-alert" class="alert alert-warning text-normal" style="display:none">
+          De premie telt niet op tot {{ total_payoff }} euro. Vul de getallen opnieuw in.
+        </p>
+
+        <p id="emptyfield-alert" class="alert alert-warning text-normal" style="display:none">
+            U hebt geen geldig getal in één van de vakjes ingevoerd. Voer a.u.b. een geldig getal tussen 0 en {{ total_payoff }} in.
+        </p>
+
+
+        <ul id="allocate_to_players">
+
+        <p id="allocate_to_players_text">
+            Geef aan hoe u de premie van {{ total_payoff }} euro wilt verdelen: hoeveel geld krijgt uw eigen bedrijf en hoeveel krijgt een ander bedrijf?
+            (Let op: dit moet optellen tot {{ total_payoff }}).
+        </p>
+
+            <li class="{{ if player.position == 'A' }}you{{ endif }}" id="allocate_to_player_A">
+                Bedrijf <strong class="text-success">A</strong>
+                (vervoert {{ resources_player_A }} ton)
+                {{ if player.position == 'A' }}
+                <small class="text-info">(Dit bent u)</small>{{ endif }}
+                {{ formfield player.allocate_to_player_A label='€' }}
+
+            </li>
+            <li class="{{ if player.position == 'B' }}you{{ endif }}" id="allocate_to_player_B">
+                Bedrijf <strong class="text-success">B</strong>
+                (vervoert {{ resources_player_B }} ton)
+                {{ if player.position == 'B' }}
+                <small class="text-info">(Dit bent u)</small>{{ endif }}
+                {{ formfield player.allocate_to_player_B label='€' }}
+
+            </li>
+            <li class="{{ if player.position == 'C' }}you{{ endif }}" id="allocate_to_player_C">
+                Bedrijf <strong class="text-success">C</strong>
+                (vervoert {{ resources_player_C }} ton)
+                {{ if player.position == 'C' }}
+                <small class="text-info">(Dit bent u)</small>{{ endif }}
+                {{ formfield player.allocate_to_player_C label='€' }}
+            </li>
+        </ul>
+
+
+
+        <div class="row">
+            <div class="col-md-1 col-md-offset-11">
+                <button id="show-confirm" class="btn btn-primary btn-large btn-primary">
+                    Volgende
+                </button>
+            </div>
+        </div>
+
+    </div> <!-- bargain -->
+
+
+    <div id="confirm" style="display: none;">
+
+
+        <p>
+            U hebt het volgende bod gedaan:
+        </p>
+
+        <p>
+            <span id="offer-desc"></span>
+        </p>
+
+        <div class="well">
+            <p>Weet u zeker dat u dit bod wilt doen?</p>
+        </div>
+        <ul id="confirmation">
+            <li><input type="radio" name="confirmation" value="yes" required="" disabled> Ja</li>
+            <li><input type="radio" name="confirmation" value="no" required="" disabled> Nee</li>
+        </ul>
+
+
+
+        <div class="row">
+            <div class="col-md-1 col-md-offset-11">
+                <button id="real-submit" class="btn btn-primary btn-large btn-primary">
+                    Volgende
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+{{ endblock }}
+
+{{ block scripts }}
+    <script>
+        $(document).ready(function () {
+
+            var form = $("form#form")[0]
+            var $bargain = $("div#bargain");
+            var $confirm = $("div#confirm");
+            var $totalAlert = $("p#total-alert");
+            var $coalitionAlert = $("p#coalition-alert");
+            var $emptyfieldAlert = $("p#emptyfield-alert");
+            var $confirmation = $("#confirmation input");
+            var allocate_A = $("#allocate_to_player_A");
+            var allocate_B = $("#allocate_to_player_B");
+            var allocate_C = $("#allocate_to_player_C");
+            var text = $("#allocate_to_players_text");
+            var position = {{ player.position|json }};
+
+            allocate_A.hide();
+            allocate_B.hide();
+            allocate_C.hide();
+            text.hide();
+
+
+            function totalOffered() {
+                var total = 0;
+
+                var coalition = $('input[name="proposed_coalition"]:checked').val();
+
+                if (coalition == "AB") {
+                    total = total + parseInt($("#id_allocate_to_player_A").val(), 10) + parseInt($("#id_allocate_to_player_B").val(), 10);
+                } else if (coalition == "AC") {
+                    total = total + parseInt($("#id_allocate_to_player_A").val(), 10) + parseInt($("#id_allocate_to_player_C").val(), 10);
+                } else if (coalition == "BC") {
+                    total = total + parseInt($("#id_allocate_to_player_B").val(), 10) + parseInt($("#id_allocate_to_player_C").val(), 10);
+                } else if (coalition == "ABC") {
+                    total = total + parseInt($("#id_allocate_to_player_A").val(), 10) + parseInt($("#id_allocate_to_player_B").val(), 10) + parseInt($("#id_allocate_to_player_C").val(), 10);
+                }
+
+                return total;
+            }
+
+            function fillConfirm() {
+                var desc = "";
+                var coalition = $('input[name="proposed_coalition"]:checked').val();
+
+                if (position == 'A') {
+                    if (coalition == 'AB'){
+                        desc = "Een AB-coalitie tussen uw bedrijf en Bedrijf B, waarbij u " + $("#allocate_to_players li.you input").val() + " euro, en Bedrijf B " + $("#allocate_to_player_B input").val() + " euro krijgt"}
+                    else if (coalition == 'AC'){
+                        desc = "Een AC-coalitie tussen uw bedrijf en Bedrijf C, waarbij u " + $("#allocate_to_players li.you input").val() + " euro, en Bedrijf C " + $("#allocate_to_player_C input").val() + " euro krijgt"}
+                    else if (coalition == 'ABC'){
+                        desc = "Een ABC-coalitie tussen uw bedrijf en Bedrijf B en Bedrijf C, waarbij u " + $("#allocate_to_players li.you input").val() + " euro, Bedrijf B " + $("#allocate_to_player_B input").val() + " euro" +', en Bedrijf C ' + $("#allocate_to_player_C input").val() + " euro krijgt"}
+                    }
+
+                else if (position == 'B'){
+                    if (coalition == 'AB'){
+                        desc = "Een AB-coalitie tussen uw bedrijf en Bedrijf A, waarbij u " + $("#allocate_to_players li.you input").val() + " euro, en Bedrijf A " + $("#allocate_to_player_A input").val() + " euro krijgt"}
+                    else if (coalition == 'BC'){
+                        desc = "Een BC-coalitie tussen uw bedrijf en Bedrijf C, waarbij u " + $("#allocate_to_players li.you input").val() + " euro, en Bedrijf C " + $("#allocate_to_player_C input").val() + " euro krijgt"}
+                    else if (coalition == 'ABC'){
+                        desc = "Een ABC-coalitie tussen uw bedrijf en Bedrijf A en Bedrijf C, waarbij u " + $("#allocate_to_players li.you input").val() + " euro, Bedrijf A " + $("#allocate_to_player_A input").val() + " euro" +', en Bedrijf C ' + $("#allocate_to_player_C input").val() + " euro krijgt"}
+                    }
+
+                else if (position == 'C'){
+                    if (coalition == 'AC'){
+                        desc = "Een AC-coalitie tussen uw bedrijf en Bedrijf A, waarbij u " + $("#allocate_to_players li.you input").val() + " euro, en Bedrijf A " + $("#allocate_to_player_A input").val() + " euro krijgt"}
+                    else if (coalition == 'BC'){
+                        desc = "Een BC-coalitie tussen uw bedrijf en Bedrijf B, waarbij u " + $("#allocate_to_players li.you input").val() + " euro, en Bedrijf B " + $("#allocate_to_player_B input").val() + " euro krijgt"}
+                    else if (coalition == 'ABC'){
+                        desc = "Een ABC-coalitie tussen uw bedrijf en Bedrijf A en Bedrijf B, waarbij u " + $("#allocate_to_players li.you input").val() + " euro, Bedrijf A " + $("#allocate_to_player_A input").val() + " euro" +', en Bedrijf B ' + $("#allocate_to_player_B input").val() + " euro krijgt"}
+                    }
+
+
+
+                $("#offer-desc").text(desc);
+            }
+
+            $("button#show-confirm").click(function (evt) {
+                evt.preventDefault();
+
+                var coalition = $('input[name="proposed_coalition"]:checked').val();
+
+
+                if (form.checkValidity()) {
+
+
+                    var valid = false;
+
+                    if ((coalition == 'AB' && $("#allocate_to_player_C input").val() > 0) ||
+                        (coalition == 'AC' && $("#allocate_to_player_B input").val() > 0) ||
+                        (coalition == 'BC' && $("#allocate_to_player_A input").val() > 0)) {
+                            valid = false;
+                            $coalitionAlert.show("fast");
+
+                        } else {
+                            valid = true;
+                                    }
+
+                if ((coalition == 'AB' && ($("#allocate_to_player_A input").val() == "" || $("#allocate_to_player_B input").val() == ""))||
+                    (coalition == 'AC' && ($("#allocate_to_player_A input").val() == "" || $("#allocate_to_player_C input").val() == "" ))||
+                    (coalition == 'BC' && ($("#allocate_to_player_B input").val() == "" || $("#allocate_to_player_C input").val() == "" ))||
+                    (coalition == 'ABC' && ($("#allocate_to_player_A input").val() == "" || $("#allocate_to_player_B input").val() == ""  || $("#allocate_to_player_C input").val() == ""))){
+                        valid = false;
+                        $emptyfieldAlert.show("fast");
+
+                } else {
+                        valid = true;
+                }
+
+
+                var total = totalOffered();
+
+                if (total == {{total_payoff}} && valid == true) {
+                    fillConfirm();
+                    $confirmation.prop("disabled", false);
+                    $bargain.hide();
+                    $totalAlert.hide();
+                    $coalitionAlert.hide();
+                    $confirm.show();
+                }
+                else {
+                    if (total != {{total_payoff}}) {
+                        $("#total-offers").text(total);
+                        $totalAlert.show("fast");
+                    }
+                    else {
+                        $totalAlert.hide();
+                    }
+                }
+
+
+            }    else {
+            form.reportValidity();
+                }
+                return false;
+    });
+
+
+
+
+            $("button#real-submit").click(function (evt) {
+                evt.preventDefault();
+                if (form.checkValidity()) {
+                    $confirmation.prop("disabled", true);
+                    var next = ($("input[name=confirmation]:checked").val() == "yes");
+                    if (next) {
+                        form.submit();
+                    } else {
+                        $confirm.hide();
+                        $totalAlert.hide();
+                        $bargain.show();
+                    }
+                } else {
+                    form.reportValidity();
+                }
+                return false;
+            });
+
+            $("input[name$='proposed_coalition']").click(function () {
+                var selected_coalition = $(this).val();
+
+
+
+                if (selected_coalition == "AB") {
+                    allocate_A.show();
+                    allocate_B.show();
+                    allocate_C.hide();
+                    text.show();
+                } else if (selected_coalition == "AC") {
+                    allocate_A.show();
+                    allocate_B.hide();
+                    allocate_C.show();
+                    text.show();
+                } else if (selected_coalition == "BC") {
+                    allocate_A.hide();
+                    allocate_B.show();
+                    allocate_C.show();
+                    text.show();
+                } else if (selected_coalition == "ABC") {
+                    allocate_A.show();
+                    allocate_B.show();
+                    allocate_C.show();
+                    text.show();
+                }
+            });
+
+        })
+    </script>
+{{ endblock }}
+

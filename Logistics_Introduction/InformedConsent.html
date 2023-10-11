@@ -1,0 +1,96 @@
+{{ block title }}
+    Toestemmingsverklaring deelname LISS panel
+{{ endblock }}
+
+{{ block content }}
+
+<div id="informed_consent">
+
+        <p>We vragen u om de volgende uitleg en toestemmingsverklaring goed door te lezen.
+        In de hele Europese Unie (EU) is sinds 25 mei 2018 de Algemene verordening
+        gegevensbescherming (AVG) van toepassing. Vanaf die datum geldt dezelfde
+        privacywetgeving in de hele EU. Centerdata houdt zich aan de eisen die deze wetgeving
+        stelt.</p>
+
+        <p>U doet mee aan het LISS panel dat wordt beheerd door Centerdata. Centerdata verzamelt
+        gegevens die ter beschikking worden gesteld aan onderzoekers, met als doel
+        wetenschappelijk, beleidsrelevant en maatschappelijk relevant onderzoek. Door het invullen
+        van de vragenlijsten ontvangen wij uw antwoorden. Wij gaan zeer zorgvuldig om met uw
+        gegevens en bewaren uw contactgegevens (naam, adres, telefoonnummer en e-mailadres)
+        altijd apart van uw antwoorden.</p>
+
+        <p>De onderzoekers van derde partijen (andere instellingen dan Centerdata) zullen nooit uw
+        contactgegevens verkrijgen zonder uw expliciete toestemming. De gegevens zijn niet meer
+        naar u herleidbaar. Uw privacy is en blijft maximaal beschermd.</p>
+
+        <p><strong>Toestemming</strong></p>
+
+        <p>Om mee te doen aan dit onderzoek van het LISS panel vragen we u officieel toestemming te geven voor het
+        bewaren en ter beschikking stellen van uw antwoorden voor wetenschappelijk,
+        beleidsrelevant en maatschappelijk relevant onderzoek. Uw antwoorden worden niet
+        gebruikt voor commercieel onderzoek. U kunt uw deelname op elk moment stopzetten
+        zonder hiervoor een reden op te geven.</p>
+
+
+<p class="text-danger">
+
+    {{ if timers }}
+        <p>
+            Belangrijk: Dit onderzoek brengt echte interactie met zich mee en het kan zijn dat andere deelnemers op u moeten wachten.
+            Om er zeker van te zijn dat u uw <strong>volledige aandacht</strong> aan dit onderzoek geeft, hebben we op sommige pagina's een timer geïnstalleerd.
+            <strong class="text-danger">Als u tijdens de interactiefase van het onderzoek niet elke pagina binnen {{ timeout_time_minutes }}0 minuten afrondt, wordt het onderzoek voor u automatisch beëindigd. U krijgt dan geen vergoeding voor dit onderzoek.
+                De twee deelnemers met wie u aan het onderhandelen bent, kunnen dan ook niet verder en
+                {{ if incentives }}
+                zullen daarom hun bonusbetaling niet kunnen ontvangen.
+                {{ endif }}
+                Zij zullen echter wel de basisvergoeding ontvangen.</strong>
+        </p>
+    {{ endif }}
+
+
+        {{ formfield player.consent label="Hierbij geef ik Centerdata toestemming om mijn antwoorden te gebruiken en aan onderzoekers ter beschikking te stellen voor wetenschappelijk, beleidsrelevant en maatschappelijk relevant onderzoek. Mijn antwoorden zijn door onderzoekers niet tot mij te herleiden."}}
+
+
+
+
+<div class="row">
+    <div class="col-md-1 col-md-offset-11">
+    <button class="o-tree-btn-next btn btn-primary">Volgende</button>
+    </div>
+</div>
+
+    </div>
+
+    <div id="warning">
+
+    <p class="text-danger">
+        Beste deelnemer,<br><br>
+        Dit experiment werkt niet op Internet Explorer en Microsoft Edge. Gebruik een andere browser, zoals google chrome of firefox om verder te gaan.    </p>
+    </div>
+
+{{ endblock }}
+
+{{ block scripts }}
+
+    <script>
+
+    $(document).ready(function () {
+
+        var informed_consent = $("#informed_consent");
+        var warning = $("#warning");
+        warning.hide();
+
+    if (navigator.appName == 'Microsoft Internet Explorer' ||  !!(navigator.userAgent.match(/Trident/) || navigator.userAgent.match(/rv:11/)) || (typeof $.browser !== "undefined" && $.browser.msie == 1))
+{
+  informed_consent.hide();
+  warning.show();
+}
+
+    if (window.navigator.userAgent.indexOf("Edge") > -1)
+    {informed_consent.hide();
+  warning.show();}
+    })
+
+</script>
+
+{{ endblock }}

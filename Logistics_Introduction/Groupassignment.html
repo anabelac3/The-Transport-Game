@@ -1,0 +1,29 @@
+{{ block title }}
+    Koppelen aan andere deelnemers
+{{ endblock }}
+
+{{ block content }}
+
+        <p>
+            We gaan u nu koppelen aan twee andere deelnemers. Dit kan even duren. De anderen kunnen nog niet klaar zijn met het lezen van de instructie.
+        </p>
+
+    {{ if timers }}
+
+        <p>
+            Als het niet mogelijk is om u binnen {{ timeout_time_minutes }}0 minuten aan twee andere deelnemers te koppelen, verschijnt er een knop. Op dat moment kunt u nog even wachten op de twee andere deelnemers of op de knop drukken om het onderzoek af te ronden en uw basisvergoeding te krijgen.
+        </p>
+
+    {{ endif }}
+
+        <p>
+        Klik nu op “Volgende”
+        </p>
+
+<div class="row">
+    <div class="col-md-1 col-md-offset-11">
+    <button class="o-tree-btn-next btn btn-primary">Volgende</button>
+    </div>
+</div>
+
+{{ endblock }}

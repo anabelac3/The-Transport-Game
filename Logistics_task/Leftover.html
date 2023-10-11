@@ -1,0 +1,38 @@
+{{ extends "global/Base.html" }}
+{{ block title }}
+    Einde van de interactie
+{{ endblock }}
+
+{{ block content }}
+
+{{ if not participant.vars.grouped }}
+
+    <p>U bent niet binnen 5 minuten gematcht.</p>
+
+{{ else }}
+
+    <p>
+        Een van de twee andere deelnemers heeft de studie verlaten.
+    </p>
+
+{{ endif }}
+    <p>
+      Aangezien u in real time aan het spelen was, betekent dit helaas dat u niet verder kunt onderhandelen. Het spijt ons voor het ongemak.
+    </p>
+    <p>
+       We willen u echter nog enkele laatste vragen stellen die van belang zijn voor ons onderzoek.
+    </p>
+    <p>
+        Ga naar de volgende pagina om het onderzoek af te ronden. Uw basisvergoeding wordt zo snel mogelijk aan uw tegoed toegevoegd.
+    </p>
+
+
+    <div class="row">
+    <div class="col-md-1 col-md-offset-11">
+    <button class="o-tree-btn-next btn btn-primary">Volgende</button>
+    </div>
+
+
+{{ endblock }}
+
+

@@ -1,0 +1,21 @@
+{{ block title }}
+Laatste vragen
+{{ endblock }}
+
+{{ block content }}
+
+    <p>
+    Tenslotte stellen we u enkele vragen over uzelf.
+    </p>
+
+    {{ formfield player.age label="Wat is uw leeftijd?" }}
+
+    {{ formfield player.gender label="Wat is uw geslacht?" }}
+
+
+    <div class="row">
+    <div class="col-md-1 col-md-offset-11">
+    <button class="o-tree-btn-next btn btn-primary">Volgende</button>
+    </div>
+
+{{ endblock }}

@@ -1,0 +1,69 @@
+{{ block title }}
+    Welke coalities zijn mogelijk?
+{{ endblock }}
+
+{{ block content }}
+    <p>
+     U en de andere twee deelnemers zijn willekeurig toegewezen aan een onderhandelingspositie.
+    </p>
+    <p>
+        <strong>U bent de onderhandelaar voor Bedrijf {{ player.position }}</strong>.
+    <p>
+    <strong>Situatie:</strong>
+    </p>
+    <p>
+     De bedrijven vervoeren iedere dag 9 ton van Amsterdam naar Parijs.
+    </p>
+    <p>
+     Bedrijf A vervoert {{resources_player_A}} ton, Bedrijf B vervoert {{resources_player_B}} ton, en Bedrijf C {{resources_player_C}} ton.
+    </p>
+    <p>
+        <strong>Er is minimaal {{ decision_point }} ton nodig om de grote vrachtwagen te gebruiken </strong>en daarmee aanspraak te maken op de bonus van <strong>{{total_payoff}} euro</strong>. De bedrijven zijn concurrenten van elkaar. Uw bedrijf wil dat u de best mogelijke deal voor uw bedrijf eruit sleept.
+    </p>
+    <p>
+        <strong>De volgende coalities zijn dus mogelijk:</strong>
+<ul>
+                {{ if 'AB' in possible_coalitions_all }}
+                <li>Bedrijf A en Bedrijf B kunnen een <strong>AB-coalitie vormen</strong>.
+                    Ze vervoeren dan samen <strong>{{subsession.resources_AB}} ton</strong> in de grote vrachtwagen.
+                     Om deze coalitie te vormen, moeten ze beslissen hoe ze de bonus van 9000 euro onderling verdelen. In deze situatie krijgt Bedrijf C niets.
+                {{ endif }}
+
+                {{ if 'AC' in possible_coalitions_all }}
+                <li>Bedrijf A en Bedrijf C kunnen een <strong>AC-coalitie vormen</strong>.
+                    Ze vervoeren dan samen <strong>{{subsession.resources_AC}} ton</strong> in de grote vrachtwagen.
+                    Om deze coalitie te vormen, moeten ze beslissen hoe ze de bonus van 9000 euro onderling verdelen. In deze situatie krijgt Bedrijf B niets.
+                {{ endif }}
+
+                {{ if 'BC' in possible_coalitions_all }}
+               <li>Bedrijf B en Bedrijf C kunnen een <strong>BC-coalitie vormen</strong>.
+                    Ze vervoeren dan samen <strong>{{subsession.resources_BC}} ton</strong> in de grote vrachtwagen.
+                    Om deze coalitie te vormen, moeten ze beslissen hoe ze de bonus van 9000 euro onderling verdelen. In deze situatie krijgt Bedrijf A niets.
+              {{ endif }}
+
+                {{ if 'ABC' in possible_coalitions_all }}
+                <li>Bedrijf A, Bedrijf B, en Bedrijf C kunnen een <strong>ABC-coalitie vormen</strong>.
+                    Ze vervoeren dan samen <strong>{{subsession.resources_ABC}} ton</strong> in de grote vrachtwagen.
+                {{ endif }}
+            </ul>
+        </p>
+
+    {{  if incentives }}
+        <p>
+            <strong>Bonus:</strong> Onthoud dat de bonus die u in dit onderzoek kunt verdienen afhankelijk is van hoe goed u onderhandelt. Voor elke duizend euro die u in de onderhandeling krijgt, krijgt u een bonusvergoeding van 0,55 euro. Dit betekent dat <strong>u een bonus kunt verdienen tussen de 0 en {{ base_fee }}0 euro </strong> voor het meedoen aan dit onderzoek.
+        </p>
+    {{ endif }}
+
+
+		<p>
+                Klik nu op “Volgende”
+        </p>
+
+
+<div class="row">
+    <div class="col-md-1 col-md-offset-11">
+    <button class="o-tree-btn-next btn btn-primary">Volgende</button>
+    </div>
+</div>
+
+{{ endblock }}

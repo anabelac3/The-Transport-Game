@@ -1,0 +1,51 @@
+{{ block title }}
+    Overzicht onderzoek
+{{ endblock }}
+
+{{ block content }}
+
+        <p>
+            Dit onderzoek bestaat uit drie delen.
+        </p>
+        <p>
+            In het eerste deel leggen we de situatie uit en ook hoe u met de twee andere deelnemers zult onderhandelen.
+        {{ if timers }}
+                In dit deel van het onderzoek is er een tijdslimiet. U hebt maximaal {{ timeout_time_minutes }}0 minuten per pagina.
+        {{ endif }}
+            Lees alle instructies goed door zodat u de situatie goed begrijpt.
+        </p>
+
+        <p>
+            In het tweede deel wordt u gekoppeld aan twee andere deelnemers.
+            {{ if timers }}
+            U hebt maximaal {{ timeout_time_minutes }}0 minuten per pagina om uw antwoord in te vullen, sneller mag natuurlijk altijd.  Dit zorgt ervoor dat u en de andere twee deelnemers niet te lang op elkaar hoeven te wachten.
+            {{ endif }}
+            {{ if incentives }}
+            Belangrijk om te onthouden is dat u extra geld kunt verdienen tijdens de onderhandeling. Hoe beter u onderhandelt, hoe meer u krijgt.
+            {{ endif }}
+        </p>
+
+
+        <p>
+            In het derde deel stellen we een paar vragen over uzelf en over het onderzoek.
+            {{ if timers }}
+            Tijdens dit deel van het onderzoek is er geen tijdslimiet omdat u niet meer in onderhandeling bent met anderen.
+            {{ endif }}
+        </p>
+
+
+        <p>
+            Op het volgende scherm krijgt u meer informatie over de situatie en het onderhandelen.
+        </p>
+
+        <p>
+         Klik nu op “Volgende”
+        </p>
+
+<div class="row">
+    <div class="col-md-1 col-md-offset-11">
+    <button class="o-tree-btn-next btn btn-primary">Volgende</button>
+    </div>
+</div>
+
+{{ endblock }}

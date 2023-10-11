@@ -1,0 +1,87 @@
+{{ block title }}
+    Het einde van de onderhandeling {{ if incentives == True }} - Bonus {{ endif }}
+{{ endblock }}
+
+{{ block styles }}
+<style>
+    p.wv {
+        margin: 0px !important;
+    }
+</style>
+{{ endblock }}
+
+
+
+
+{{ block content }}
+
+    {{ if subsession.round_number == C.NUM_ROUNDS }}
+
+
+    <p>Het maximum aantal rondes is bereikt. Jullie drieën hebben er te lang over gedaan om een coalitie te vormen. </p>
+    <p>Dit betekent dat u, naast uw basisvergoeding, geen bonusbetaling hebt kunnen krijgen.</p>
+
+    {{ else }}
+
+    <p>
+        Er is een {{ group.formed_coalition_name }}-coalitie gevormd:
+        {{ if group.formed_coalition_name == 'AB' and group.payoff_A > 0 or group.formed_coalition_name == 'AC' and group.payoff_A > 0 or group.formed_coalition_name == 'ABC' and group.payoff_A > 0 }}
+            Bedrijf A{{ if player.position == 'A' }}
+                        <strong class="text-info">(u)</strong>
+                        {{ endif }} heeft {{ group.payoff_A }} euro ontvangen.{{ endif }}
+        {{ if group.formed_coalition_name == 'AB' and group.payoff_B > 0 or group.formed_coalition_name == 'BC' and group.payoff_B > 0 or group.formed_coalition_name == 'ABC' and group.payoff_B > 0 }}
+            Bedrijf B{{ if player.position == 'B' }}
+                        <strong class="text-info">(u)</strong>
+                        {{ endif }} heeft {{ group.payoff_B }} euro ontvangen.{{ endif }}
+        {{ if group.formed_coalition_name == 'BC' and group.payoff_C > 0 or group.formed_coalition_name == 'AC' and group.payoff_C > 0 or group.formed_coalition_name == 'ABC' and group.payoff_C > 0 }}
+            Bedrijf C{{ if player.position == 'C' }}
+                        <strong class="text-info">(u)</strong>
+                        {{ endif }} heeft {{ group.payoff_C }} euro ontvangen.{{ endif }}
+    </p>
+
+
+
+    {{ if incentives == True }}
+
+    <p>
+         Voor u heeft dit de volgende gevolgen:
+    </p>
+
+
+
+    <p>
+        {{ if player.payoff > 0 }}
+         In de onderhandeling hebt u
+        <strong class="text-success">{{player.money}} euro</strong> gekregen.
+         Voor elke duizend, krijgt u een bonus van 0,55 euro.
+         Dit betekent dat u, naast de basisvergoeding van {{ base_fee }}0 euro een bonus krijgt van:
+         <strong class="text-success">{{player.payoff}} euro</strong>.
+        {{ endif }}
+
+        {{ if participant.payoff == 0 }}
+         Tijdens de onderhandeling hebt u geen aandeel in het budget gekregen.
+         Dit betekent dat u geen bonus ontvangt bovenop de basisvergoeding van {{ base_fee }}0 euro.
+        {{ endif }}
+    </p>
+
+    {{ endif }}
+
+    <p>
+         Ga naar de volgende pagina om enkele laatste vragen te beantwoorden.
+    </p>
+
+    {{ endif }}
+
+{{ if timers == True }}
+    <p>
+         Opmerking: De interactiefase van het onderzoek is afgelopen.
+         Dit betekent dat u geen tijdslimiet heeft voor de laatste paar pagina's.
+    </p>
+{{ endif }}
+
+<div class="row">
+    <div class="col-md-1 col-md-offset-11">
+        <button class="o-tree-btn-next btn btn-primary">Volgende</button>
+    </div>
+</div>
+{{ endblock }}

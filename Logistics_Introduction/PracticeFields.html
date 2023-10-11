@@ -1,0 +1,31 @@
+{{ block title }}
+    Hoe vult u getallen in?
+{{ endblock }}
+
+{{ block content }}
+
+        <p>
+            Tijdens de onderhandeling zult u voorstellen doen met behulp van tekstvakken. Op deze pagina gaat u oefenen hoe u deze moet gebruiken.
+        </p>
+
+        <p>
+            Hieronder vindt u een vak. In zo'n vak typt u uw bod. Tijdens de onderhandeling doet u voorstellen in euro’s. Biedingen moeten ook worden gedaan met gehele euro's, dus zonder getallen achter de komma.
+        </p>
+        <p>
+            Als u bijvoorbeeld 8800 euro wilt bieden, moet u het getal 8800 typen, niet het getal 8800,00 of 8800.00. Oefen dit hieronder door een bod van 6000 euro te doen.
+        </p>
+
+        <p>
+            Wanneer u met succes een bod van 6000 hebt ingevoerd kunt u verder naar de volgende pagina.
+        </p>
+
+    {{formfield player.practice label=" "}}
+
+
+<div class="row">
+    <div class="col-md-1 col-md-offset-11">
+    <button class="o-tree-btn-next btn btn-primary">Volgende</button>
+    </div>
+</div>
+
+{{ endblock }}

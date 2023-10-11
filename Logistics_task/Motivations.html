@@ -1,0 +1,48 @@
+{{ load otree static }}
+
+{{ block title }}
+    Questions 2/7
+{{ endblock }}
+
+{{ block content }}
+
+    <p>Please think back to your motivations during bargaining and answer the next questions. There are no right or wrong answers.</p>
+
+    <p>During bargaining, to what extent were you motivated to:</p>
+
+    <table class="table">
+    <tr>
+        <th><center><br>Question</center></th>
+        <th><center>Not at all <br> 1</center></th>
+        <th><center><br>2</center></th>
+        <th><center><br>3</center></th>
+        <th><center><br>4</center></th>
+        <th><center><br>5</center></th>
+        <th><center><br>6</center></th>
+        <th><center>Very much <br> 7</center></th>
+    </tr>
+
+    {{ for field in form }}
+        <tr>
+            <td>{{ field.label }}</td>
+            {{ for choice in field }}
+                <td><center>{{ choice }}</center></td>
+            {{ endfor }}
+        </tr>
+    {{ endfor }}
+
+    </table>
+
+    {{ next_button }}
+
+{{ endblock }}
+
+{{ block scripts }}
+
+<style>
+    .table {
+        table-layout: fixed;
+    }
+</style>
+
+{{ endblock }}
