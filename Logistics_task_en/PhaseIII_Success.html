@@ -1,0 +1,114 @@
+{{ block title }}
+Phase 3: A coalition has been successfully formed!
+{{ endblock }}
+
+{{ block styles }}
+<style>
+    p.wv {
+        margin: 0px !important;
+    }
+</style>
+{{ endblock }}
+
+{{ block content }}
+
+        <p>
+            <strong class="text-success">A coalition was successfully formed!</strong>
+        Below you can see the winning coalition in green color.
+        </p>
+
+        <table class="table table-hover">
+            <thead>
+            <th>Coalition type</th>
+                <th>Share for Company A (transports {{ resources_player_A }} tons)
+                {{ if player.position == 'A' }}
+                    <strong class="text-info">(This is you)</strong>
+                {{ endif }}</th>
+            <th>Share for Company B (transports {{ resources_player_B }} tons)
+                {{ if player.position == 'B' }}
+                    <strong class="text-info">(This is you)</strong>
+                {{ endif }}
+            </th>
+            <th>Share for Company C (transports {{ resources_player_C }} tons)
+                {{ if player.position == 'C' }}
+                    <strong class="text-info">(This is you)</strong>
+                {{ endif }}</th>
+                <th>Offer made by</th>
+                <th>Offer selected by</th>
+            </thead>
+            <tbody>
+                {{ for name,all_A,all_B,all_C,prop_A,prop_B,prop_C,sel_A,sel_B,sel_C in offers_dictionary }}
+                <tr class="{{ if name == group.formed_coalition_name and all_A == group.payoff_A and all_B == group.payoff_B and all_C == group.payoff_C }}alert alert-success{{ endif }}">
+                    <td>{{name}}-coalition</td>
+                    <td>{{ if all_A >= 0 }} {{all_A|to0}} euros
+                            {{ endif }}</td>
+                    <td>{{ if all_B >= 0 }} {{all_B|to0}} euros
+                            {{ endif }}</td>
+                    <td>{{ if all_C >= 0 }} {{all_C|to0}} euros
+                            {{ endif }}</td>
+                    <td>
+                        {{ if prop_A == 1 }}
+                            Company A
+                            {{ if player.position == "A" }}
+                                <strong class="text-info">(This is you)</strong>
+                            {{ endif }}
+                            <br>
+                        {{ endif }}
+                        {{ if prop_B == 1 }}
+                            Company B
+                            {{ if player.position == "B" }}
+                                <strong class="text-info">(This is you)</strong>
+                            {{ endif }}
+                            <br>
+                        {{ endif }}
+                        {{ if prop_C == 1 }}
+                            Company C
+                            {{ if player.position == "C" }}
+                                <strong class="text-info">(This is you)</strong>
+                            {{ endif }}
+                            <br>
+                        {{ endif }}
+                    </td>
+                    <td>
+                        {{ if sel_A == 1 }}
+                            Company A
+                            {{ if player.position == "A" }}
+                                <strong class="text-info">(This is you)</strong>
+                            {{ endif }}
+                            <br>
+                        {{ endif }}
+                        {{ if sel_B == 1 }}
+                            Company B
+                            {{ if player.position == "B" }}
+                                <strong class="text-info">(This is you)</strong>
+                            {{ endif }}
+                            <br>
+                        {{ endif }}
+                        {{ if sel_C == 1 }}
+                            Company C
+                            {{ if player.position == "C" }}
+                                <strong class="text-info">(This is you)</strong>
+                            {{ endif }}
+                            <br>
+                        {{ endif }}
+                    </td>
+                </tr>
+                {{ endfor }}
+            </tbody>
+        </table>
+
+        {{ if group.selected_coalition_name_player_A == 'None' }}
+            <li>Company A did not select a coalition offer.</li>
+        {{ endif }}
+        {{ if group.selected_coalition_name_player_B == 'None' }}
+            <li>Company B did not select a coalition offer.</li>
+        {{ endif }}
+        {{ if group.selected_coalition_name_player_C == 'None' }}
+            <li>Company C did not select a coalition offer.</li>
+        {{ endif }}
+
+
+
+{{ next_button }}
+
+{{ endblock }}

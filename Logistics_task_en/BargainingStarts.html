@@ -1,0 +1,26 @@
+{{ load otree static }}
+
+{{ block title }}
+    You and the other participants will now negotiate
+{{ endblock }}
+
+{{ block content }}
+
+    <p>
+   Negotiation proceeds in three phases:
+    </p>
+
+    <p>
+        <li>
+    <strong>Phase 1.</strong> Make a coalition proposal: Everyone makes a proposal in which (a) they indicate which coalition they want to form and (b) they indicate how they want to distribute the {{ total_payoff }} euros between the coalition members.
+        </li>
+        <li>
+    <strong>Phase 2.</strong> Choose a coalition proposal: Everyone selects the coalition proposal they want to implement.
+        </li>
+        <li>
+    <strong>Phase 3.</strong> See if a coalition has been formed: Everyone sees which coalition proposals have been chosen. A coalition is finally formed when all the companies involved in the coalition accept the proposal. Each time this has not happened, a new round of negotiations begins.
+        </li>
+    </p>
+
+{{ next_button }}
+{{ endblock }}

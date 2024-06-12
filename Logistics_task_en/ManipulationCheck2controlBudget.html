@@ -1,0 +1,35 @@
+{{ block title }}
+Last questions
+{{ endblock }}
+
+{{ block content }}
+
+   <p>Please, answer the following questions. There are no right or wrong answers.</p>
+
+    <strong>To what extent did you feel you had control over the amount of the bonus offered by the company in Paris?</strong>
+
+    <table class="table" width="700px">
+    <tr>
+        <th width="100 px"><center>Not at all <br> 1</center></th>
+        <th width="100 px"><center><br>2</center></th>
+        <th width="100 px"><center><br>3</center></th>
+        <th width="100 px"><center><br>4</center></th>
+        <th width="100 px"><center><br>5</center></th>
+        <th width="100 px"><center><br>6</center></th>
+        <th width="100 px"><center>Very much <br> 7</center></th>
+    </tr>
+
+    {{ for field in form }}
+        <tr>
+            {{ for choice in field }}
+                <td width="100 px"><center>{{ choice }}</center></td>
+            {{ endfor }}
+        </tr>
+    {{ endfor }}
+
+    </table>
+
+
+{{ next_button }}
+
+{{ endblock }}

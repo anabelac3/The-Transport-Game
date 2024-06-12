@@ -1,0 +1,65 @@
+{{ block title }}
+Which coalitions are possible?
+{{ endblock }}
+
+{{ block content }}
+    <p>
+You and the other two participants were randomly assigned to a bargaining position.
+    </p>
+    <p>
+        <strong>You are the negotiator for Company {{ player.position }}</strong>.
+    <p>
+    <strong>Situation:</strong>
+    </p>
+    <p>
+    The companies transport 9 tons every day from Amsterdam to Paris.
+    </p>
+    <p>
+     Company A transports {{resources_player_A}} tons, Company B transports {{resources_player_B}} tons, and Company C transports {{resources_player_C}} tons.
+    </p>
+    <p>
+        <strong>A minimum of {{ decision_point }} tons is needed to use the big truck </strong>and thereby claim the bonus of <strong>{{total_payoff}} euros</strong>. Companies are competitors with each other. Your company wants you to get the best possible deal for your business.
+    </p>
+    <p>
+        <strong>Thus, the following coalitions are possible:</strong>
+<ul>
+                {{ if 'AB' in possible_coalitions_all }}
+                <li>Company A and Company B can form a <strong>AB-coalition</strong>.
+                    They then transport together <strong>{{subsession.resources_AB}} tons</strong> in the big truck.
+                    To form this coalition, they have to decide how to divide the 9000 euros bonus between them. In this situation, company C gets nothing.
+                {{ endif }}
+
+                {{ if 'AC' in possible_coalitions_all }}
+                <li>Company A and Company C can form a <strong>AC-coalition</strong>.
+                    They then transport together <strong>{{subsession.resources_AC}} tons</strong> in the big truck.
+                    To form this coalition, they have to decide how to divide the 9000 euros bonus between them. In this situation, company B gets nothing.
+                {{ endif }}
+
+                {{ if 'BC' in possible_coalitions_all }}
+               <li>Company B and Company C can form a <strong>BC-coalition</strong>.
+                    They then transport together <strong>{{subsession.resources_BC}} tons</strong> in the big truck.
+                    To form this coalition, they have to decide how to divide the 9000 euros bonus between them. In this situation, company A gets nothing.
+                {{ endif }}
+
+                {{ if 'ABC' in possible_coalitions_all }}
+                   <li>Company A, Company B and Company C can form a <strong>ABC-coalition</strong>.
+                    They then transport together <strong>{{subsession.resources_ABC}} tons</strong> in the big truck.
+                    To form this coalition, they have to decide how to divide the 9000 euros bonus between them.
+                {{ endif }}
+           </ul>
+        </p>
+
+    {{  if incentives }}
+        <p>
+            <strong>Bonus:</strong> Remember that the bonus you can earn in this survey depends on how well you negotiate. For every thousand euros you get in the negotiation, you will receive a bonus fee of 1.00 euros. This means that <strong>you can earn a bonus between 0 and 9.00 euros</strong> for participating in this study.
+        </p>
+    {{ endif }}
+
+
+		<p>
+                Now click on "Next"
+        </p>
+
+{{ next_button }}
+
+{{ endblock }}

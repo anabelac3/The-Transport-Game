@@ -1,0 +1,33 @@
+{{ load otree static }}
+
+{{ block title }}
+    You represent the {{ if player.position == 'A' }} largest {{ endif }} {{ if player.position == 'B' }} medium {{ endif }} {{ if player.position == 'C' }} small {{ endif }} company (Company {{ player.position }})
+{{ endblock }}
+
+{{ block content }}
+
+    <p>
+   The random draw is over.
+    </p>
+    <p>
+    - Company A transports {{resources_player_A}} tons.
+    </p>
+    <p>
+    - Company B transports {{resources_player_B}} tons.
+    </p>
+    <p>
+    - Company C transports {{resources_player_C}} tons.
+    </p>
+    <p>
+        A <strong>minimum of {{ decision_point }} tons</strong> is needed to use the big truck to get (part of) the {{ total_payoff }} euros bonus.
+    </p>
+    <p>
+     You are the negotiator for Company {{ player.position }}. You transport {{ player.resources }} tons every day.
+     Read what this means for negotiations on the next screen.
+    </p>
+        <p>
+        Now click on “Next”
+        </p>
+
+{{ next_button }}
+{{ endblock }}

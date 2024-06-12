@@ -1,0 +1,72 @@
+{{ block title }}
+Coalition Formation
+{{ endblock }}
+
+{{ block content }}
+
+
+        <p>
+            To recap. The companies transport 9 tons of cargo every day from Amsterdam to Paris.
+        </p>
+        <p>
+            Company A is a large company that transports 4 tons to Paris daily. Company B is a medium-sized company that transports 3 tons to Paris daily. Company C is a small company that transports 2 tons to Paris daily. There is an opportunity to earn a bonus of 9,000 euros. This bonus is paid out if the large truck is used. This means that any coalition of companies offering at least 5 tons of freight can claim the 9000 euro bonus.
+        </p>
+
+        <p>
+            These are the possibilities:
+			
+            <ul>
+                {{ if 'AB' in possible_coalitions_all }}
+                <li><strong class="text-success">Company A and company B can form an AB-coalition</strong></li>.
+                    There will then be (4 + 3 =) <strong class="text-success">{{subsession.resources_AB}} tons </strong> of freight carried by the big truck.
+                    Companies A and B must then decide among themselves how to divide the {{total_payoff}} euros.
+					Company C continues to use its own truck and receives no bonus.
+                {{ endif }}
+        </p>
+        <p>
+                {{ if 'AC' in possible_coalitions_all }}
+                <li><strong class="text-success">Company A and company C can form an AC-coalition</strong></li>.
+                    There will then be (4 + 2 =) <strong class="text-success">{{subsession.resources_AC}} tons </strong> of freight carried by the big truck.
+                    Companies A and C must then decide among themselves how to divide the {{total_payoff}} euros.
+					Company B continues to use its own truck and receives no bonus.
+                {{ endif }}
+        </p>
+        <p>
+                {{ if 'BC' in possible_coalitions_all }}
+                <li><strong class="text-success">Company B and company C can form an BC-coalition</strong></li>.
+                    There will then be (3 + 2 =) <strong class="text-success">{{subsession.resources_BC}} tons </strong> of freight carried by the big truck.
+                    Companies B and C must then decide among themselves how to divide the {{total_payoff}} euros.
+					Company A continues to use its own truck and receives no bonus.
+                {{ endif }}
+        </p>
+        <p>
+                {{ if 'ABC' in possible_coalitions_all }}
+                <li><strong class="text-success">Company A, company B and company C can form an ABC-coalition</strong></li>.
+                    There will then be (4 + 3 + 2 =) <strong class="text-success">{{subsession.resources_ABC}} tons </strong> of freight carried by the big truck.
+                    Companies A, B and C must then decide among themselves how to divide the {{total_payoff}} euros.
+                {{ endif }}
+            </ul>
+        </p>
+
+
+		<p>
+            So the negotiation is:
+        </p>
+		<p>
+            1) which partner(s) is each company looking for to work with?
+        </p>
+		<p>
+            2) how do the members of a coalition divide the 9000 euros?
+        </p>
+
+		<p>
+            Since the companies are <strong>competitors</strong> of each other, you must make sure that you manage to get the best possible deal for your own company.
+            Which company you represent will be determined by a random draw. This is done the moment you and the other participants are matched
+        </p>
+
+		<p>
+            Now click on "Next"
+        </p>
+
+{{ next_button }}
+{{ endblock }}

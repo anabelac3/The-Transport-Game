@@ -1,0 +1,89 @@
+{{ block title }}
+    Informed consent
+{{ endblock }}
+
+{{ block content }}
+
+<div id="informed_consent">
+        <p><strong> Study on social decision-making </strong></p>
+        <p>
+            This study is being conducted by the department of social psychology at Tilburg University. The intention of this study is to research and gain knowledge of coalition formation.
+            In this study, we are interested in how people form coalitions. To assess this, you will bargain with two other participants to attain a sum of money. {{if incentives}} This money will be converted into a real monetary bonus at the end of the experiment. {{ endif }}
+        </p>
+
+        <p><strong> Duration and payment </strong></p>
+
+        <p>
+            This study will take about 20 minutes to complete. Note that during this study, <strong>you will interact with two other participants</strong>. This means that you sometimes have to wait for a while, for example when you are being matched to other participants or when other participants are responding to you. This waiting time is taken into account in the estimation of 20 minutes. However, due to its interactive nature, there is some variation in how long it takes to finish the study.
+            Depending on your bargaining outcomes, the payoff that you obtained during the study will be converted into a real monetary bonus of between 0 and 9.00 euros.
+
+             {{ if timers }}
+        <p>
+            Important: This study entails real interaction and other participants may have to wait for you. To ensure that you are giving this study your full attention, we have installed a timer on some pages.
+            <strong class="text-danger">If, during the interaction phase of the study, you do not complete each page in at least {{ timeout_time_minutes }}0 minutes, the study will automatically be terminated, and you will not be able to obtain any payment. Moreover, the two participants who you were interacting with will also not be able to continue
+                {{ if incentives }}
+                and thus will not be able to obtain their bonus payment.
+                {{ endif }} </strong>
+        </p>
+            {{ endif }}
+        </p>
+
+        <p><strong> Confidentiality and Questions </strong></p>
+        <p>
+            All data obtained from participants will be kept anonymous. Any information collected about you will be coded using a fake name (pseudonym) or initials and numbers, for example abc-123, etc. The information which has your identifiable information will be kept separately from the rest of your data. It will be stored in a password-protected file and only the researchers will have access to it. Once anonymized, the data may be made available to researchers via accessible data repositories and possibly used for novel purposes. The data will be stored for at least 10 years.
+        </p>
+        <p>
+            If you have questions regarding this study, you may contact Anabela Cantiani at A.A.Cantiani@tilburguniversity.edu.
+        </p>
+        <p>
+            This study has been approved by the Ethics Review Board of Tilburg School of Social and Behavioral Sciences. If you have any remarks or complaints regarding this research, you may contact the Ethics Review Board of Tilburg School of Social and Behavioral Sciences via ERB@tilburguniversity.edu.
+        </p>
+
+        <p><strong> Participation, Benefits and Risks </strong></p>
+
+        <p>
+            Participation in this research study is completely voluntary. You have the right to withdraw at any time or refuse to participate entirely. If you desire to withdraw, please simply close your internet browser. There will be no negative consequences if you withdraw or refuse to participate. Risks are minimal for involvement in this study. It is very unlikely that answering the questions affects you emotionally or otherwise.
+        </p>
+
+
+
+        {{ formfield player.consent label="I have read the information above and agree to participate in the study"}}
+
+{{ next_button }}
+
+    </div>
+
+    <div id="warning">
+
+    <p class="text-danger">
+        Dear participant,<br><br>
+        This experiment does not work on Internet Explorer and Microsoft Edge. Please use a different browser, such as Google Chrome or Firefox, to proceed.
+    </p>
+    </div>
+
+{{ endblock }}
+
+{{ block scripts }}
+
+    <script>
+
+    $(document).ready(function () {
+
+        var informed_consent = $("#informed_consent");
+        var warning = $("#warning");
+        warning.hide();
+
+    if (navigator.appName == 'Microsoft Internet Explorer' ||  !!(navigator.userAgent.match(/Trident/) || navigator.userAgent.match(/rv:11/)) || (typeof $.browser !== "undefined" && $.browser.msie == 1))
+{
+  informed_consent.hide();
+  warning.show();
+}
+
+    if (window.navigator.userAgent.indexOf("Edge") > -1)
+    {informed_consent.hide();
+  warning.show();}
+    })
+
+</script>
+
+{{ endblock }}

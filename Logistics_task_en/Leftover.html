@@ -1,0 +1,37 @@
+{{ extends "global/Base.html" }}
+{{ block title }}
+End of interaction
+{{ endblock }}
+
+{{ block content }}
+
+{{ if not participant.vars.grouped }}
+
+    <p>
+        You have not been matched within 5 minutes.
+    </p>
+
+{{ else }}
+
+    <p>
+        One of the other two participants left the study.
+    </p>
+
+{{ endif }}
+    <p>
+        Since you were playing in real time, this unfortunately means you cannot continue negotiating. We are sorry for the inconvenience.
+    </p>
+
+    <p>
+        We would like to ask you some final questions that are relevant to our research.
+    </p>
+    <p>
+        Go to the next page to complete the survey.
+    </p>
+
+{{ next_button }}
+
+
+{{ endblock }}
+
+

@@ -1,0 +1,45 @@
+{{ block title }}
+The negotiation situation
+{{ endblock }}
+
+{{ block content }}
+
+        <p>
+            You and two other individuals participating in this study each work for a different transport company. We will indicate later which company you work for. At this time, we want to indicate first what the situation is. Please read these instructions carefully.
+			{{ if comprehension_check == True }}
+            At the end of the instructions, we will ask you a few questions about it.
+            {{ endif }}
+        </p>
+
+        <p>
+            The three companies transport a total of 9 tons of cargo each day from Amsterdam to Paris.
+            Company A is the market leader and transports 4 tons every day. Company B is a medium-sized company and transports 3 tons every day. Company C is a relatively small company and transports 2 tons every day. Each company uses a truck just big enough to carry its own freight. So Company A uses a truck with a capacity of 4 tons, Company B uses a truck with a capacity of 3 tons, and Company C uses a truck with a capacity of 2 tons.
+      </p>
+
+        <p>
+            Every company also knows that there is a type of truck that is much larger and can carry up to 9 tons of cargo. However, this type of truck is only allowed on the road if it holds at least 5 tons. This means that none of the companies individually have enough cargo to use this type of truck. They can, of course, form a coalition and then use this large truck.
+        </p>
+
+        <p>
+            Recently, all three companies were approached with a very attractive proposal. There is a company in Paris that is eager for the big truck. This company is offering a premium of 9000 euros if the big truck comes to Paris. So the question is (1) which company will partner with which company, and (2) how do the companies divide the 9000 euro premium among themselves?
+        </p>
+
+
+        <p>
+            However, there are some conditions:
+        </p>
+        <p>
+            <strong>1)</strong> A company must put its entire cargo in one truck. Thus, a company cannot put part of its freight in the small truck and another part in the big truck.
+        </p>
+        <p>
+            <strong>2)</strong> The 9000 euro bonus is paid only to the companies that use the big truck.</p>
+        <p>
+            So, any combination of companies carrying at least 5 tons of freight can use the big truck and thus claim the premium of 9000 euros.
+        </p>
+
+        <p>
+            Now click on “Next”
+        </p>
+
+{{ next_button }}
+{{ endblock }}

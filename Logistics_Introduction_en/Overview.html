@@ -1,0 +1,41 @@
+{{ block title }}
+Research Overview
+{{ endblock }}
+
+{{ block content }}
+
+        <p>
+            This study consists of three parts.
+        </p>
+        <p>
+        In the first part, we explain the situation and also how you will negotiate with the other two participants.
+        {{ if timers }}
+        In this part of the survey, there is a time limit. You have a maximum of {{ timeout_time_minutes }}0 minutes per page.
+        {{ endif }}
+        Read all instructions carefully so that you have a good understanding of the situation. {{ if comprehension_check }}We will ask you questions about it {{ endif }}.
+        </p>
+
+        <p>
+            In the second part, you will be matched with two other participants.
+            {{ if timers }}
+            You have a maximum of {{ timeout_time_minutes }}0 minutes per page to provide with your answer, faster is of course always allowed. This ensures that you and the other two participants do not have to wait too long for each other.
+            {{ endif }}
+            {{ if incentives }}
+            The important thing to remember is that you can earn money during negotiation. The better you negotiate, the more you get.
+            {{ endif }}
+        </p>
+
+
+        <p>
+            In the third section, we ask a few questions about yourself and the study.
+            {{ if timers }}
+            During this part of the study, there is no time limit because you are no longer negotiating with others.
+            {{ endif }}
+        </p>
+
+        <p>
+        Now click on “Next”
+        </p>
+
+{{ next_button }}
+{{ endblock }}

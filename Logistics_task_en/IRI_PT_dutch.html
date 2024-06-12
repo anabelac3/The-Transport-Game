@@ -1,0 +1,44 @@
+{{ load otree static }}
+
+{{ block title }}
+Final questions
+{{ endblock }}
+
+{{ block content }}
+
+    <p>For each of the following statements, please indicate the extent to which that statement describes you correctly or incorrectly. There are no right or wrong answers.</p>
+
+   <table class="table">
+    <tr>
+        <th><center><br>Question</center></th>
+        <th><center>Does not describe me well <br> 1</center></th>
+        <th><center><br>2</center></th>
+        <th><center><br>3</center></th>
+        <th><center><br>4</center></th>
+        <th><center>Does describes me well <br> 5</center></th>
+    </tr>
+
+
+    {{ for field in form }}
+        <tr>
+            <td>{{ field.label }}</td>
+            {{ for choice in field }}
+                <td><center>{{ choice }}</center></td>
+            {{ endfor }}
+        </tr>
+    {{ endfor }}
+
+    </table>
+{{ next_button }}
+
+{{ endblock }}
+
+{{ block scripts }}
+
+<style>
+    .table {
+        table-layout: fixed;
+    }
+</style>
+
+{{ endblock }}

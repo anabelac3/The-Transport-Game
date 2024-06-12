@@ -1,0 +1,38 @@
+{{ block title }}
+    Questions 2/6
+{{ endblock }}
+
+{{ block content }}
+
+    <p>Please indicate to what extend you agree with the following statement. There are no right or wrong answers.</p>
+
+    <strong>Parties that have contributed more to the budget deserve to be in the coalition more than parties that have contributed less.</strong>
+
+    <table class="table" width="700px">
+    <tr>
+
+        <th width="100 px"><center>Strongly <br> disagree <br> 1</center></th>
+        <th width="100 px"><center><br>2</center></th>
+        <th width="100 px"><center><br>3</center></th>
+        <th width="100 px"><center><br>4</center></th>
+        <th width="100 px"><center><br>5</center></th>
+        <th width="100 px"><center><br>6</center></th>
+        <th width="100 px"><center>Strongly <br> agree <br> 7</center></th>
+    </tr>
+
+    {{ for field in form }}
+        <tr>
+            {{ for choice in field }}
+                <td width="100 px"><center>{{ choice }}</center></td>
+            {{ endfor }}
+        </tr>
+    {{ endfor }}
+
+    </table>
+
+        <p>
+        Now click on “Next”
+        </p>
+
+{{ next_button }}
+{{ endblock }}

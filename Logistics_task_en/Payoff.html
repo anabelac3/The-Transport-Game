@@ -1,0 +1,84 @@
+{{ block title }}
+    The end of the negotiation {{ if incentives == True }} - Bonus {{ endif }}
+{{ endblock }}
+
+{{ block styles }}
+<style>
+    p.wv {
+        margin: 0px !important;
+    }
+</style>
+{{ endblock }}
+
+
+
+
+{{ block content }}
+
+    {{ if subsession.round_number == C.NUM_ROUNDS }}
+
+
+    <p>The maximum number of rounds has been reached. The three of you took too long to form a coalition. </p>
+    <p>This means that, you have not been able to get a bonus payment.</p>
+
+    {{ else }}
+
+    <p>
+        A {{ group.formed_coalition_name }} coalition has been formed:
+        {{ if group.formed_coalition_name == 'AB' and group.payoff_A > 0 or group.formed_coalition_name == 'AC' and group.payoff_A > 0 or group.formed_coalition_name == 'ABC' and group.payoff_A > 0 }}
+            Company A{{ if player.position == 'A' }}
+                        <strong class="text-info">(you)</strong>
+                        {{ endif }} has received {{ group.payoff_A }} euros.{{ endif }}
+        {{ if group.formed_coalition_name == 'AB' and group.payoff_B > 0 or group.formed_coalition_name == 'BC' and group.payoff_B > 0 or group.formed_coalition_name == 'ABC' and group.payoff_B > 0 }}
+            Company B{{ if player.position == 'B' }}
+                        <strong class="text-info">(you)</strong>
+                        {{ endif }} has received {{ group.payoff_B }} euros.{{ endif }}
+        {{ if group.formed_coalition_name == 'BC' and group.payoff_C > 0 or group.formed_coalition_name == 'AC' and group.payoff_C > 0 or group.formed_coalition_name == 'ABC' and group.payoff_C > 0 }}
+            Company C{{ if player.position == 'C' }}
+                        <strong class="text-info">(you)</strong>
+                        {{ endif }} has received {{ group.payoff_C }} euros.{{ endif }}
+    </p>
+
+
+
+    {{ if incentives == True }}
+
+    <p>
+        For you, this has the following implications:
+    </p>
+
+
+
+    <p>
+        {{ if player.payoff > 0 }}
+        In the negotiation, you have received
+        <strong class="text-success">{{player.money}} euros</strong>.
+         For every thousand, you get a bonus of 1.00 euros.
+         This means you may get a bonus of:
+         <strong class="text-success">{{player.payoff}} euros</strong>.
+        {{ endif }}
+
+        {{ if participant.payoff == 0 }}
+         During the negotiation, you did not receive a share of the budget.
+         This means you will not receive a bonus.
+        {{ endif }}
+    </p>
+
+    {{ endif }}
+
+    <p>
+        Go to the next page to answer some final questions.
+    </p>
+
+    {{ endif }}
+
+{{ if timers == True }}
+    <p>
+        Note: The interaction phase of the survey has ended.
+        This means you have no time limit for the last few pages.
+    </p>
+{{ endif }}
+
+{{ next_button }}
+
+{{ endblock }}

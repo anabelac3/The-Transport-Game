@@ -1,0 +1,24 @@
+{{ block title }}
+How do you make an offer?
+{{ endblock }}
+
+{{ block content }}
+
+        <p>
+During the negotiation, you will make proposals using text boxes. On this page, you will practice how to use them.
+        </p>
+
+        <p>
+Below you will find a box. In such a box you type your offer. During the negotiation, you will make offers in euros. Offers must also be made with whole euros, i.e. without decimal numbers.
+        </p>
+        <p>
+For example, if you want to offer 8800 euros, you should type the number 8800, not the number 8800.00 or 8800.00. Practice this below by making an offer of 6000 euros.
+        </p>
+
+        <p>
+When you have successfully entered an offer of 6000 you can proceed to the next page.
+        </p>
+    {{formfield player.practice label=""}}
+
+{{ next_button }}
+{{ endblock }}

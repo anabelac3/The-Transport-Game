@@ -1,0 +1,17 @@
+{{ block title }}
+Last questions
+{{ endblock }}
+
+{{ block content }}
+
+    <p>
+ Finally, we will ask you some questions about yourself.
+    </p>
+
+    {{ formfield player.age label="What is your age?" }}
+
+    {{ formfield player.gender label="What is your gender?" }}
+
+
+{{ next_button }}
+{{ endblock }}

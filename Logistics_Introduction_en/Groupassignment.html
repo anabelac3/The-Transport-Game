@@ -1,0 +1,25 @@
+{{ block title }}
+Forming groups
+{{ endblock }}
+
+{{ block content }}
+
+        <p>
+            We will now pair you with two other participants. This may take a while. The others may not have finished reading the instructions yet.
+        </p>
+
+    {{ if timers }}
+
+        <p>
+            Note that after groups have been formed the interactive part of the study begins. During this part, you will have to complete each page in {{ timeout_time_minutes }}0 minutes. This is to ensure that others are not waiting too long.
+        </p>
+
+    {{ endif }}
+
+        <p>
+        Now click on “Next”
+        </p>
+
+{{ next_button }}
+
+{{ endblock }}

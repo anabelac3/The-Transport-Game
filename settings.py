@@ -14,9 +14,9 @@ SESSION_CONFIG_DEFAULTS = {
 SESSION_CONFIGS = [
     {
         'name': 'Logistics_game_dutch',
-        'display_name': "Logistics game",
+        'display_name': "Logistics game - dutch",
         'num_demo_participants': 3,
-        'app_sequence': ['Logistics_Introduction', 'Logistics_task'],
+        'app_sequence': ['Logistics_Introduction_nl', 'Logistics_task_nl'],
         'resources_player_A': 4,
         'resources_player_B': 3,
         'resources_player_C': 2,
@@ -28,6 +28,28 @@ SESSION_CONFIGS = [
         'select_none': False,
         'timeout_time': 5 * 60,
         'slider_time': 2, # is not used
+        'timers': True,
+        'incentives': True,
+        'earned': True,
+        'relation': True,
+        'comprehension_check': True,
+    },
+    {
+        'name': 'Logistics_game_english',
+        'display_name': "Logistics game - english",
+        'num_demo_participants': 3,
+        'app_sequence': ['Logistics_Introduction_en', 'Logistics_task_en'],
+        'resources_player_A': 4,
+        'resources_player_B': 3,
+        'resources_player_C': 2,
+        'decision_point': 5,
+        'grand_coalition': True,
+        'total_payoff': 9000,
+        'payoff_conversion': 0.000555555556,
+        'base_fee': 5.00,
+        'select_none': False,
+        'timeout_time': 5 * 60,
+        'slider_time': 2,  # is not used
         'timers': True,
         'incentives': True,
         'earned': True,
@@ -50,7 +72,7 @@ PARTICIPANT_FIELDS = [
 
 # ISO-639 code
 # for example: de, fr, ja, ko, zh-hans
-LANGUAGE_CODE = 'nl'
+LANGUAGE_CODE = 'en'
 
 # e.g. EUR, GBP, CNY, JPY
 REAL_WORLD_CURRENCY_CODE = 'EUR'
@@ -63,6 +85,7 @@ ROOMS = [
         'participant_label_file': '_rooms/econ101.txt',
     },
     {'name': 'live_demo', 'display_name': 'Room for live demo',},
+    {'name': 'live_1', 'display_name': 'Room for Smart Freight', }
 ]
 
 
