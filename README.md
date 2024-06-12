@@ -1,6 +1,6 @@
 # The Transport Game
 
-The Transport Game is a three-party coalition formation game designed to simulate horizontal collaboration within the transport industry. The Transport Game enables researchers interested in multi-party processes to conduct real-time, online simple majority coalition experiments. This interactive game operates as an oTree (version 5.6.0) application, and it is based on the Online Coalition Game developed by Wissink et al. (2022). 
+The Transport Game is a three-party coalition formation game designed to simulate horizontal collaboration within the transport industry. The Transport Game enables researchers interested in multi-party processes to conduct real-time, online simple majority coalition experiments. This interactive game operates as an oTree (version 5.6.0) application, and it is based on the Online Coalition Game developed by Wissink et al. (2022). The game is available in both Dutch and English.
 
 Here are the installation instructions:
 
